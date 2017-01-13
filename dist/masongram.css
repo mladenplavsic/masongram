@@ -104,11 +104,18 @@
 .masongram-container .masongram-image-container:hover .masongram-image-caption-container {
   opacity: .9;
 }
+.fancybox-title {
+  font-weight: normal;
+}
+.fancybox-title .child {
+  font-weight: normal;
+}
 .fancybox-title > * {
   padding: 2px;
 }
-.fancybox-title .masongram-fancybox-title-caption a {
+.fancybox-title a {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  color: #fff;
 }
