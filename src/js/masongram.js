@@ -30,11 +30,17 @@
 
       var self = this;
 
-      var container = document.createElement('div');
-      var $container = $(container);
-      $container.append('<div class="masongram-image-sizer">');
-      $container.addClass('masongram-container');
-      $container.appendTo(self);
+      var $container = $('<div>')
+        .attr({
+          class: 'masongram-container'
+        })
+        .appendTo(self);
+
+      $('<div>')
+        .attr({
+          class: 'masongram-image-sizer'
+        })
+        .appendTo($container);
 
       $container.find('.masongram-image-container').fancybox({
         loop: false,
@@ -48,9 +54,9 @@
         afterLoad: function () {
           var object = $container.find('.masongram-image-container').eq(this.index).data('object');
           this.title = config.title;
-          this.title = this.title.replace(/\{caption}/gi, object.caption.text
+          this.title = object.caption ? this.title.replace(/\{caption}/gi, object.caption.text
               .replace(/#([^\s]+)/g, '<a onclick="masongram.filter(\'$1\')">#$1</a>')
-              .replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>'));
+              .replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>')) : '';
           this.title = this.title.replace(/\{map}/gi, object.location ? '<a href="' + config.map.replace(/\{latitude}/g, object.location.latitude).replace(/\{longitude}/g, object.location.longitude) + '" target="_blank">map</a>' : '');
           this.title = this.title.replace(/\{likes}/gi, object.user_has_liked ? '&#9829;' : '&#9825;' + ' ' + object.likes.count);
           this.title = this.title.replace(/\{author}/gi, '<a href="https://www.instagram.com/' + object.user.username + '" target="_blank" title="' + object.user.full_name + '">@' + object.user.username + '</a>');
@@ -159,29 +165,33 @@
 
         function add(object) {
 
-          var img = document.createElement('img');
-          img.setAttribute('src', object.images.low_resolution.url);
-          img.setAttribute('width', object.images.low_resolution.width);
-          img.setAttribute('height', object.images.low_resolution.height);
-          img.setAttribute('class', 'masongram-image');
+          var $a = $('<a>').attr({
+            'href': object.images.standard_resolution.url,
+            'rel': 'masongram',
+            'target': '_blank',
+            'class': 'masongram-image-container'
+          });
 
-          var caption = document.createElement('div');
-          caption.setAttribute('class', 'masongram-image-caption');
-          caption.innerHTML = object.caption.text;
+          $('<img>').attr({
+            'src': object.images.low_resolution.url,
+            'width': object.images.low_resolution.width,
+            'height': object.images.low_resolution.height,
+            'class': 'masongram-image'
+          }).appendTo($a);
 
-          var captionContainer = document.createElement('div');
-          captionContainer.setAttribute('class', 'masongram-image-caption-container');
-          captionContainer.appendChild(caption);
+          if (object.caption) {
 
-          var a = document.createElement('a');
-          a.setAttribute('href', object.images.standard_resolution.url);
-          a.setAttribute('rel', 'masongram');
-          a.setAttribute('target', '_blank');
-          a.setAttribute('class', 'masongram-image-container');
+            var $captionContainer = $('<div>').attr({
+              'class': 'masongram-image-caption-container'
+            });
 
-          a.appendChild(img);
-          a.appendChild(captionContainer);
-          var $a = $(a);
+            $('<div>').attr({
+              'class': 'masongram-image-caption'
+            }).html(object.caption.text).appendTo($captionContainer);
+
+            $a.append($captionContainer);
+          }
+
           $a.hide();
 
           $a.data('object', object);
