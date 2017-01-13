@@ -12,10 +12,15 @@ gulp.task('default', [
 gulp.task('js', function () {
   return gulp.src('src/js/*.js')
     .pipe(concat('masongram.js'))
-    .pipe(gulp.dest('dist'))
     .pipe(uglify({
-      mangle: true
+      output: {
+        beautify: true
+      },
+      compress: false,
+      mangle: false
     }))
+    .pipe(gulp.dest('dist'))
+    .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist'))
 });

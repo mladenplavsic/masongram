@@ -1,11 +1,11 @@
-(function ($) {
+(function (window, document, $) {
 
   window.masongram = $.fn.masongram = function (options) {
 
     var config = $.extend(true, {
       access_token: '180267898.c46e184.b6475192f2734fa8a669f1c70800aa8f', // nikola
       //access_token: '37231497.d000633.35b599a756ce4210a8c8f64af07dedc1', // mladen
-      endpoint: location.hash ? 'tags/' + location.hash.substr(1) : 'users/self',
+      endpoint: window.location.hash ? 'tags/' + window.location.hash.substr(1) : 'users/self',
       //endpoint: 'tags/nijebukva',
       count: 10,
       offset: 100,
@@ -220,4 +220,4 @@
     window.location.reload();
   }
 
-}(jQuery));
+}(window, document, jQuery));
