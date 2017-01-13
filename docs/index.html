@@ -4,16 +4,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="masongram.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="masongram.min.js"></script>
   <script>
     $(document).ready(function () {
       $('#photos').masongram({
-        count: 5
+        count: 5,
+        loop:  true
       }).on('masongram:api:end', function () {
         console.info('No more API items');
       });
@@ -21,6 +24,24 @@
   </script>
 </head>
 <body>
-<div id="photos"></div>
+
+  <div class="jumbotron text-center">
+    <h1>
+      MasonGram
+      <a class="btn btn-primary" href="https://github.com/mladenplavsic/masongram" role="button">Learn more</a>
+    </h1>
+    <p class="lead">
+      jQuery plugin for displaying Instagram photo feed
+    </p>
+    <p>
+      <a class="github-button" href="https://github.com/mladenplavsic/masongram" data-icon="octicon-star" data-style="mega" data-count-href="/mladenplavsic/masongram/stargazers" data-count-api="/repos/mladenplavsic/masongram#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star mladenplavsic/masongram on GitHub">Star</a>
+      <a class="github-button" href="https://github.com/mladenplavsic/masongram/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/mladenplavsic/masongram/network" aria-label="Fork mladenplavsic/masongram on GitHub">Fork</a>
+      <a class="github-button" href="https://github.com/mladenplavsic" data-style="mega" aria-label="Follow @mladenplavsic on GitHub">Follow @mladenplavsic</a>
+    </p>
+  </div>
+
+  <!-- dedicated container or MasonGram -->
+  <div id="photos"></div>
+
 </body>
 </html>
