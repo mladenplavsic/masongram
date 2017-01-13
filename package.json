@@ -1,0 +1,23 @@
+{
+  "name": "masongram",
+  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
+  "main": "dist/masongram.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-less": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mladen Plavsic <mladen.plavsic@gmail.com>",
+  "license": "MIT"
+}

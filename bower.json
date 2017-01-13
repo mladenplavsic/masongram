@@ -1,0 +1,26 @@
+{
+  "name": "masongram",
+  "authors": [
+    "Mladen Plavsic <mladen.plavsic@gmail.com>"
+  ],
+  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
+  "main": "dist/masongram.js",
+  "keywords": [
+    "instagram",
+    "masonry",
+    "fancybox",
+    "lightbox",
+    "infinite",
+    "scroll",
+    "api"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
