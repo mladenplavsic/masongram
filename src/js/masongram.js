@@ -6,7 +6,14 @@
       if (/access_token/.test(window.location.search)) {
         options.access_token = window.location.search.replace(/.*access_token=([\w.]+).*/i, '$1');
       } else {
-        console.warn('Missing required option "access_token". Read more at https://github.com/mladenplavsic/masongram');
+        var message = 'Missing required option "access_token". Read more at https://github.com/mladenplavsic/masongram';
+        this.each(function() {
+          var self = this;
+          $(document).ready(function () {
+            $(self).trigger('masongram:error', message).off('masongram:error');
+          });
+        });
+        console.warn(message);
         return this;
       }
     }

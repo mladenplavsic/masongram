@@ -19,13 +19,15 @@
         loop:  true
       }).on('masongram:api:end', function () {
         console.info('No more API items');
+      }).on('masongram:error', function (event, message) {
+        alert(message);
       });
     })
   </script>
 </head>
 <body>
 
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="margin-bottom:0">
     <h1>
       MasonGram
       <a class="btn btn-primary" href="https://github.com/mladenplavsic/masongram" role="button">Learn more</a>
