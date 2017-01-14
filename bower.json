@@ -5,8 +5,8 @@
   ],
   "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
   "main": [
-    "dist/masongram.min.js",
-    "dist/masongram.min.css"
+    "dist/masongram.js",
+    "dist/masongram.css"
   ],
   "keywords": [
     "instagram",
