@@ -24,11 +24,11 @@
             offset: 100,
             columnWidth: 324,
             loop: false,
-            template: {
-                title: "{caption} {likes} {author} {map}",
+            title: {
+                html: "{caption} {likes} {author} {map}",
                 likes: "&#9825; {likes:count}",
                 author: '<a href="https://www.instagram.com/{author:username}" target="_blank">{author:full_name}</a>',
-                map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}">map</a>'
+                map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}" target="_blank">map</a>'
             }
         }, options);
         return this.each(function() {
@@ -48,14 +48,14 @@
                 },
                 afterLoad: function() {
                     var object = $container.find(".masongram-image-container").eq(this.index).data("object");
-                    this.title = config.template.title;
+                    this.title = config.title.html;
                     if (object.caption) {
                         this.title = this.title.replace(/\{caption}/gi, object.caption.text.replace(/#([^\s]+)/g, "<a onclick=\"masongram.filter('$1')\">#$1</a>").replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>'));
                     }
-                    this.title = this.title.replace(/\{likes}/gi, config.template.likes).replace(/\{likes:count}/gi, object.likes.count);
-                    this.title = this.title.replace(/\{author}/gi, config.template.author).replace(/\{author:username}/gi, object.user.username).replace(/\{author:full_name}/gi, object.user.full_name ? object.user.full_name : object.user.username);
+                    this.title = this.title.replace(/\{likes}/gi, config.title.likes).replace(/\{likes:count}/gi, object.likes.count);
+                    this.title = this.title.replace(/\{author}/gi, config.title.author).replace(/\{author:username}/gi, object.user.username).replace(/\{author:full_name}/gi, object.user.full_name ? object.user.full_name : object.user.username);
                     if (object.location) {
-                        this.title = this.title.replace(/\{map}/gi, config.template.map).replace(/\{map:latitude}/g, object.location.latitude).replace(/\{map:longitude}/g, object.location.longitude);
+                        this.title = this.title.replace(/\{map}/gi, config.title.map).replace(/\{map:latitude}/g, object.location.latitude).replace(/\{map:longitude}/g, object.location.longitude);
                     }
                     this.title = this.title.replace(/\{[^}]+}/gi, "").trim();
                 },
