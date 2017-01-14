@@ -4,7 +4,10 @@
     "Mladen Plavsic <mladen.plavsic@gmail.com>"
   ],
   "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
-  "main": "dist/masongram.js",
+  "main": [
+    "dist/masongram.min.js",
+    "dist/masongram.min.css"
+  ],
   "keywords": [
     "instagram",
     "masonry",
@@ -18,10 +21,15 @@
   "homepage": "https://mladenplavsic.github.io/masongram/",
   "ignore": [
     "**/.*",
-    "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "node_modules",
+    "docs",
+    "src",
+    ".gitignore",
+    "bower.json",
+    "gulpfile.js",
+    "LICENSE.md",
+    "package.json"
   ],
   "dependencies": {
     "jquery": "^2.2.4",
