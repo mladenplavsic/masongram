@@ -24,8 +24,12 @@
             offset: 100,
             columnWidth: 324,
             loop: false,
-            map: "https://www.google.com/maps?q={latitude},{longitude}",
-            title: "{caption} {map} {author} {likes}"
+            template: {
+                title: "{caption} {likes} {author} {map}",
+                likes: "&#9825; {likes:count}",
+                author: '<a href="https://www.instagram.com/{author:username}" target="_blank">{author:full_name}</a>',
+                map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}">map</a>'
+            }
         }, options);
         return this.each(function() {
             var self = this;
@@ -44,11 +48,16 @@
                 },
                 afterLoad: function() {
                     var object = $container.find(".masongram-image-container").eq(this.index).data("object");
-                    this.title = config.title;
-                    this.title = object.caption ? this.title.replace(/\{caption}/gi, object.caption.text.replace(/#([^\s]+)/g, "<a onclick=\"masongram.filter('$1')\">#$1</a>").replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>')) : "";
-                    this.title = this.title.replace(/\{map}/gi, object.location ? '<a href="' + config.map.replace(/\{latitude}/g, object.location.latitude).replace(/\{longitude}/g, object.location.longitude) + '" target="_blank">map</a>' : "");
-                    this.title = this.title.replace(/\{likes}/gi, object.user_has_liked ? "&#9829;" : "&#9825;" + " " + object.likes.count);
-                    this.title = this.title.replace(/\{author}/gi, '<a href="https://www.instagram.com/' + object.user.username + '" target="_blank" title="' + object.user.full_name + '">@' + object.user.username + "</a>");
+                    this.title = config.template.title;
+                    if (object.caption) {
+                        this.title = this.title.replace(/\{caption}/gi, object.caption.text.replace(/#([^\s]+)/g, "<a onclick=\"masongram.filter('$1')\">#$1</a>").replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>'));
+                    }
+                    this.title = this.title.replace(/\{likes}/gi, config.template.likes).replace(/\{likes:count}/gi, object.likes.count);
+                    this.title = this.title.replace(/\{author}/gi, config.template.author).replace(/\{author:username}/gi, object.user.username).replace(/\{author:full_name}/gi, object.user.full_name ? object.user.full_name : object.user.username);
+                    if (object.location) {
+                        this.title = this.title.replace(/\{map}/gi, config.template.map).replace(/\{map:latitude}/g, object.location.latitude).replace(/\{map:longitude}/g, object.location.longitude);
+                    }
+                    this.title = this.title.replace(/\{[^}]+}/gi, "").trim();
                 },
                 afterShow: function() {
                     $("html, body").animate({
