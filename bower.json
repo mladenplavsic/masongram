@@ -22,5 +22,12 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "masonry": "^4.1.1",
+    "imagesloaded": "images-loaded#^4.1.1",
+    "jquery-infinite-scroll": "infinite-scroll#^2.1.0",
+    "fancybox": "^2.1.6"
+  }
 }
