@@ -33,7 +33,7 @@
         title: '{caption} {likes} {author} {map}',
         likes: '&#9825; {likes:count}',
         author: '<a href="https://www.instagram.com/{author:username}" target="_blank">{author:full_name}</a>',
-        map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}">map</a>'
+        map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}" target="_blank">map</a>'
       }
     }, options );
 
