@@ -15,7 +15,7 @@
                 return this;
             }
         }
-        if (window.location.hash) {
+        if (/^[\w\d_-]+$/.test(window.location.hash)) {
             options.endpoint = "tags/" + window.location.hash.substr(1);
         }
         var config = $.extend(true, {

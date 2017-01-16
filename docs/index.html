@@ -14,13 +14,17 @@
   <script src="masongram.min.js"></script>
   <script>
     $(document).ready(function () {
+      var access_token = window.location.hash.replace(/#access_token=([\w\d.]+)/, '$1');
       $('#photos').masongram({
+        access_token: access_token,
         count: 5,
         loop:  true
       }).on('masongram:api:end', function () {
         console.info('No more API items');
-      }).on('masongram:error', function (event, message) {
-        alert(message);
+      }).on('masongram:error', function () {
+        if (!access_token) {
+          $('#photos').after('<br><p class="text-center"><a class="btn btn-info btn-lg" href="https://api.instagram.com/oauth/authorize/?client_id=99bd7840c3ce40a3b30cceace365891f&redirect_uri=' + window.location + '&response_type=token&scope=public_content">Allow MasonGram to access your public photos</a></p>')
+        }
       });
     })
   </script>
