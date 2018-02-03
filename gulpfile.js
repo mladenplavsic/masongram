@@ -42,11 +42,11 @@ gulp.task('docs', ['js', 'less'], function () {
 });
 
 gulp.task('watch:less', function () {
-  gulp.watch('./src/less/*.less', ['docs']);
+  gulp.watch('./src/less/*.less', ['less']);
 });
 
 gulp.task('watch:js', function () {
-  gulp.watch('src/js/*.js', ['docs']);
+  gulp.watch('src/js/*.js', ['js']);
 });
 
 gulp.task('watch', [
