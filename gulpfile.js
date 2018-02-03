@@ -40,3 +40,16 @@ gulp.task('docs', ['js', 'less'], function () {
   ])
     .pipe(gulp.dest('docs'))
 });
+
+gulp.task('watch:less', function () {
+  gulp.watch('./src/less/*.less', ['docs']);
+});
+
+gulp.task('watch:js', function () {
+  gulp.watch('src/js/*.js', ['docs']);
+});
+
+gulp.task('watch', [
+  'watch:less',
+  'watch:js'
+]);

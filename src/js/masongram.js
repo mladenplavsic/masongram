@@ -29,13 +29,17 @@
       columnWidth: 324,
       // use loop for testing purposes
       loop: false,
+      link: 'fancybox',
+      size: 'low_resolution',
+      map: 'https://www.google.com/maps?q={map:latitude},{map:longitude}',
       title: {
         html: '{caption} {likes} {author} {map}',
         likes: '&#9825; {likes:count}',
-        author: '<a href="https://www.instagram.com/{author:username}" target="_blank">{author:full_name}</a>',
-        map: '<a href="https://www.google.com/maps?q={map:latitude},{map:longitude}" target="_blank">map</a>'
+        author: '<a href="https://www.instagram.com/{author:username}" target="_blank">{author:full_name}</a>'
       }
     }, options );
+
+    config.title.map = '<a href="' + config.map + '" target="_blank">map</a>';
 
     return this.each(function() {
 
@@ -49,69 +53,73 @@
 
       $('<div>')
         .attr({
-          class: 'masongram-image-sizer'
+          class: 'masongram-image-sizer masongram-image-size-' + config.size
         })
         .appendTo($container);
 
-      $container.find('.masongram-image-container').fancybox({
-        loop: false,
-        helpers: {
-          overlay: {
-            locked: false
-          }
-        },
+      if (config.link === 'map') {
 
-        // create HTML caption from object data
-        afterLoad: function () {
+      } else {
+        $container.find('.masongram-image-container').fancybox({
+          loop: false,
+          helpers: {
+            overlay: {
+              locked: false
+            }
+          },
 
-          var object = $container.find('.masongram-image-container').eq(this.index).data('object');
+          // create HTML caption from object data
+          afterLoad: function () {
 
-          this.title = config.title.html;
+            var object = $container.find('.masongram-image-container').eq(this.index).data('object');
 
-          if (object.caption) {
-            this.title = this.title.replace(/\{caption}/gi, object.caption.text
-              .replace(/#([^\s]+)/g, '<a onclick="masongram.filter(\'$1\')">#$1</a>')
-              .replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>'));
-          }
+            this.title = config.title.html;
 
-          this.title = this.title
-            .replace(/\{likes}/gi, config.title.likes)
-            .replace(/\{likes:count}/gi, object.likes.count);
+            if (object.caption) {
+              this.title = this.title.replace(/\{caption}/gi, object.caption.text
+                .replace(/#([^\s]+)/g, '<a onclick="masongram.filter(\'$1\')">#$1</a>')
+                .replace(/@([^\s]+)/g, '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>'));
+            }
 
-          this.title = this.title
-            .replace(/\{author}/gi, config.title.author)
-            .replace(/\{author:username}/gi, object.user.username)
-            .replace(/\{author:full_name}/gi, object.user.full_name ? object.user.full_name : object.user.username);
-
-          if (object.location) {
             this.title = this.title
-              .replace(/\{map}/gi, config.title.map)
-              .replace(/\{map:latitude}/g, object.location.latitude)
-              .replace(/\{map:longitude}/g, object.location.longitude);
-          }
+              .replace(/\{likes}/gi, config.title.likes)
+              .replace(/\{likes:count}/gi, object.likes.count);
 
-          // replace empty, trim
-          this.title = this.title.replace(/\{[^}]+}/gi, '').trim();
+            this.title = this.title
+              .replace(/\{author}/gi, config.title.author)
+              .replace(/\{author:username}/gi, object.user.username)
+              .replace(/\{author:full_name}/gi, object.user.full_name ? object.user.full_name : object.user.username);
 
-        },
+            if (object.location) {
+              this.title = this.title
+                .replace(/\{map}/gi, config.title.map)
+                .replace(/\{map:latitude}/g, object.location.latitude)
+                .replace(/\{map:longitude}/g, object.location.longitude);
+            }
 
-        // check if more images should be added to fancybox
-        afterShow: function () {
+            // replace empty, trim
+            this.title = this.title.replace(/\{[^}]+}/gi, '').trim();
 
-          $('html, body').animate({
-            scrollTop: $container.find('.masongram-image-container').eq(this.index).offset().top
-          });
+          },
 
-          if (this.index == this.group.length - 1 && this.index != $container.find('.masongram-image-container').length - 1) {
-            var next = $container.find('.masongram-image-container').eq(this.index + 1);
-            this.group.push({
-              href: next.attr('href'),
-              type: 'image'
+          // check if more images should be added to fancybox
+          afterShow: function () {
+
+            $('html, body').animate({
+              scrollTop: $container.find('.masongram-image-container').eq(this.index).offset().top
             });
-          }
 
-        }
-      });
+            if (this.index == this.group.length - 1 && this.index != $container.find('.masongram-image-container').length - 1) {
+              var next = $container.find('.masongram-image-container').eq(this.index + 1);
+              this.group.push({
+                href: next.attr('href'),
+                type: 'image'
+              });
+            }
+
+          }
+        });
+      }
 
       $container.masonry({
         itemSelector: '.masongram-image-container',
@@ -198,17 +206,33 @@
 
         function add(object) {
 
+          // Get location from text
+          if (object.caption && object.caption.text && /@[\d]+\.[\d]+,[\d]+\.[\d]+/.test(object.caption.text)) {
+            var location = object.caption.text.match(/@([\d]+\.[\d]+),([\d]+\.[\d]+)/);
+            object.location = {
+              latitude: location[1],
+              longitude: location[2]
+            };
+          }
+
           var $a = $('<a>').attr({
             'href': object.images.standard_resolution.url,
             'rel': 'masongram',
             'target': '_blank',
-            'class': 'masongram-image-container'
+            'class': 'masongram-image-container masongram-image-size-' + config.size
           });
 
+          if (config.link === 'map' && object.location) {
+            var href = config.map
+              .replace(/\{map:latitude}/g, object.location.latitude)
+              .replace(/\{map:longitude}/g, object.location.longitude)
+            $a.attr('href', href);
+          }
+
           $('<img>').attr({
-            'src': object.images.low_resolution.url,
-            'width': object.images.low_resolution.width,
-            'height': object.images.low_resolution.height,
+            'src': object.images[config.size].url,
+            'width': object.images[config.size].width,
+            'height': object.images[config.size].height,
             'class': 'masongram-image'
           }).appendTo($a);
 
