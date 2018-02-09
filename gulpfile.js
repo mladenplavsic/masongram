@@ -4,6 +4,7 @@ var less = require('gulp-less');
 var rename = require('gulp-rename');
 var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('default', [
   'docs'
@@ -11,6 +12,7 @@ gulp.task('default', [
 
 gulp.task('js', function () {
   return gulp.src('src/js/*.js')
+    .pipe(sourcemaps.init())
     .pipe(concat('masongram.js'))
     .pipe(uglify({
       output: {
@@ -22,6 +24,7 @@ gulp.task('js', function () {
     .pipe(gulp.dest('dist'))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'))
 });
 
@@ -41,15 +44,6 @@ gulp.task('docs', ['js', 'less'], function () {
     .pipe(gulp.dest('docs'))
 });
 
-gulp.task('watch:less', function () {
-  gulp.watch('./src/less/*.less', ['less']);
+gulp.task('watch', ['docs'], function () {
+  gulp.watch('src/**/*.*', ['docs']);
 });
-
-gulp.task('watch:js', function () {
-  gulp.watch('src/js/*.js', ['js']);
-});
-
-gulp.task('watch', [
-  'watch:less',
-  'watch:js'
-]);

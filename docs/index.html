@@ -5,28 +5,34 @@
   <link rel="stylesheet" href="masongram.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>MasonGram - jQuery plugin for displaying Instagram photo feed</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="masongram.min.js"></script>
   <script>
+    var access_token = window.location.hash.replace(/#access_token=([\w\d.]+)/, '$1');
+    var authorization = 'https://api.instagram.com/oauth/authorize/?client_id=99bd7840c3ce40a3b30cceace365891f&redirect_uri=' + window.location + '&response_type=token&scope=public_content';
+    if (!access_token) {
+      access_token = '2127248609.1677ed0.db0b4ad502bf43d3b915db9fadcfece0';
+    }
     $(document).ready(function () {
-      var access_token = window.location.hash.replace(/#access_token=([\w\d.]+)/, '$1');
       $('#photos').masongram({
         access_token: access_token,
         count: 5,
-        loop:  true
+        size: 'standard_resolution',
+        caption: '<div class="text-center"><p data-if="{likes}"><i class="fa fa-heart text-danger"></i> {likes}</p><p data-if="{caption}">{caption}</p><a class="btn btn-primary" href="https://www.google.com/maps/@{location},12z" target="_blank" data-if="{location}">Location</a></div>'
       }).on('masongram:api:end', function () {
         console.info('No more API items');
       }).on('masongram:error', function () {
         if (!access_token) {
-          $('#photos').after('<br><p class="text-center"><a class="btn btn-info btn-lg" href="https://api.instagram.com/oauth/authorize/?client_id=99bd7840c3ce40a3b30cceace365891f&redirect_uri=' + window.location + '&response_type=token&scope=public_content">Allow MasonGram to access your public photos</a></p>')
+          $('#photos').after('<br><p class="text-center"><a class="btn btn-info btn-lg ' + authorization + '">Allow MasonGram to access your public photos</a></p>')
         }
       });
+      $('.authorization').attr('href', authorization);
     })
   </script>
   <script>
@@ -45,14 +51,13 @@
       MasonGram
       <a class="btn btn-primary" href="https://github.com/mladenplavsic/masongram" role="button">Learn more</a>
     </h1>
-    <p class="lead">
-      jQuery plugin for displaying Instagram photo feed
-    </p>
     <p>
       <a class="github-button" href="https://github.com/mladenplavsic/masongram" data-icon="octicon-star" data-size="large" aria-label="Star mladenplavsic/masongram on GitHub">Star</a>
       <a class="github-button" href="https://github.com/mladenplavsic/masongram/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork mladenplavsic/masongram on GitHub">Fork</a>
       <a class="github-button" href="https://github.com/mladenplavsic" data-size="large" aria-label="Follow @mladenplavsic on GitHub">Follow @mladenplavsic</a>
     </p>
+    <p class="lead">jQuery plugin for displaying Instagram photo feed</p>
+    <p>Displaying photos from <a href="https://fruskac.net/en/" target="_blank">@fruskac</a> - <a class="authorization">Use your Instagram account</a></p>
   </div>
 
   <!-- dedicated container or MasonGram -->
