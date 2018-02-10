@@ -1,6 +1,6 @@
 'use strict';
 
-var Masongram = (function (window, $, undefined) {
+var Masongram = (function () {
 
   var _dependencies = [
     'jQuery',
@@ -133,4 +133,4 @@ var Masongram = (function (window, $, undefined) {
 
   return Masongram;
 
-})(window, jQuery);
+})();

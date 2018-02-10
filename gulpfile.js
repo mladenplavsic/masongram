@@ -4,6 +4,8 @@ var less = require('gulp-less');
 var rename = require('gulp-rename');
 var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
+var iife = require('gulp-iife');
+var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('default', [
@@ -13,17 +15,13 @@ gulp.task('default', [
 gulp.task('js', function () {
   return gulp.src('src/js/*.js')
     .pipe(sourcemaps.init())
-    .pipe(concat('masongram.js'))
-    .pipe(uglify({
-      output: {
-        beautify: true
-      },
-      compress: false,
-      mangle: false
+    .pipe(concat('masongram.min.js'))
+    .pipe(replace(/["']use strict["'];/g, ''))
+    .pipe(iife({
+      params: ['window', 'document', 'jQuery'],
+      args: ['window', 'document', '$']
     }))
-    .pipe(gulp.dest('dist'))
     .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))
 });
@@ -31,7 +29,6 @@ gulp.task('js', function () {
 gulp.task('less', function () {
   return gulp.src('./src/less/*.less')
     .pipe(less())
-    .pipe(gulp.dest('dist'))
     .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist'));

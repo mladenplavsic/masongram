@@ -1,6 +1,6 @@
 'use strict';
 
-var Tile = (function (window, $, undefined) {
+var Tile = (function () {
 
   var
     _$object,
@@ -99,4 +99,4 @@ var Tile = (function (window, $, undefined) {
 
   return Tile;
 
-})(window, jQuery);
+})();
