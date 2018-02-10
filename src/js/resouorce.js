@@ -25,18 +25,18 @@ var Resource = (function () {
         url: _url,
         data: {
           access_token: _config.access_token,
-          count: _config.count
+          count: _config.count,
         },
-        dataType: 'jsonp'
+        dataType: 'jsonp',
       }).success(function (response) {
-        $(self).trigger('loaded', [response.data]);
+        $(self).trigger('loaded', [ response.data ]);
         deferred.resolve(response.data);
         if (!_config.loop) {
           // Used for testing
           _url = response.pagination && response.pagination.next_url ? response.pagination.next_url : false;
         }
       }).error(function () {
-        deferred.reject('Error fetching data')
+        deferred.reject('Error fetching data');
       });
 
       return deferred.promise();
@@ -46,7 +46,7 @@ var Resource = (function () {
       $(this).on(name, function (event, data) {
         callback(data);
       });
-    }
+    },
 
   };
 

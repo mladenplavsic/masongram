@@ -21,24 +21,24 @@ var Tile = (function () {
       _$object = $('<a>').attr({
         href: _data.link,
         target: '_blank',
-        class: 'masongram-image-container masongram-image-size-' + _config.size
+        class: 'masongram-image-container masongram-image-size-' + _config.size,
       });
 
       var $img = $('<img>').attr({
-        src: _data.images[_config.size].url,
-        width: _data.images[_config.size].width,
-        height: _data.images[_config.size].height,
-        class: 'masongram-image'
+        src: _data.images[ _config.size ].url,
+        width: _data.images[ _config.size ].width,
+        height: _data.images[ _config.size ].height,
+        class: 'masongram-image',
       });
 
       $img.appendTo(_$object);
 
       var $captionContainer = $('<div>', {
-        class: 'masongram-image-caption-container'
+        class: 'masongram-image-caption-container',
       });
 
       var $caption = $('<div>', {
-        class: 'masongram-image-caption'
+        class: 'masongram-image-caption',
       });
 
       if (_data.caption && _data.caption.text) {
@@ -58,8 +58,8 @@ var Tile = (function () {
         var location = _data.caption.text.match(/@([\d]+\.[\d]+),([\d]+\.[\d]+)/);
         _data.caption.text = _data.caption.text.replace(/\s*@([\d]+\.[\d]+),([\d]+\.[\d]+)/, '');
         _data.location = {
-          latitude: location[1],
-          longitude: location[2]
+          latitude: location[ 1 ],
+          longitude: location[ 2 ],
         };
       }
     },
@@ -91,7 +91,7 @@ var Tile = (function () {
       }
 
       return html;
-    }
+    },
 
   };
 

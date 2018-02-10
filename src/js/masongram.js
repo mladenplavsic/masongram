@@ -4,7 +4,7 @@ var Masongram = (function () {
 
   var _dependencies = [
     'jQuery',
-    'Masonry'
+    'Masonry',
   ];
 
   var _error = false;
@@ -31,7 +31,7 @@ var Masongram = (function () {
   Masongram.prototype = {
 
     require: function (name) {
-      var result = window[name] !== undefined;
+      var result = window[ name ] !== undefined;
       if (!result) {
         _error = true;
         console.error('Dependency unavailable: ' + name);
@@ -46,34 +46,34 @@ var Masongram = (function () {
         count: 10,
         offset: 10,
         size: 'low_resolution',
-        caption: '{caption}'
-      }, options );
+        caption: '{caption}',
+      }, options);
     },
 
     setup: function ($element) {
       var self = this;
       _$container = $('<div>')
         .attr({
-          class: 'masongram-container'
+          class: 'masongram-container',
         })
         .appendTo($element);
 
       $('<div>')
         .attr({
-          class: 'masongram-image-sizer masongram-image-size-' + _config.size
+          class: 'masongram-image-sizer masongram-image-size-' + _config.size,
         })
         .appendTo(_$container);
 
       _$container.masonry({
         itemSelector: '.masongram-image-container',
         columnWidth: '.masongram-image-sizer',
-        percentPosition: true
+        percentPosition: true,
       });
 
       _resource = new Resource(_config);
 
       _resource.on('loaded', function (items) {
-        self.append(items)
+        self.append(items);
       });
 
       // load images when scrolled close to bottom
@@ -82,7 +82,7 @@ var Masongram = (function () {
         if (!scrollTimeout) {
           scrollTimeout = setTimeout(function () {
             _$container.imagesLoaded().progress(function () {
-              if ($(window).scrollTop() + $(window).height() > $(document).height() * (1 - _config.offset/100)) {
+              if ($(window).scrollTop() + $(window).height() > $(document).height() * (1 - _config.offset / 100)) {
                 self.load();
               }
             });
@@ -97,7 +97,7 @@ var Masongram = (function () {
           if ($('body').height() < $(window).height()) {
             self.load();
           }
-        })
+        });
       });
 
       self.load();
@@ -115,7 +115,7 @@ var Masongram = (function () {
       items.forEach(function (item, index) {
         var tile = new Tile(item, {
           caption: _config.caption,
-          size: _config.size
+          size: _config.size,
         });
         var $object = tile.getObject();
         setTimeout(function () {
@@ -127,8 +127,8 @@ var Masongram = (function () {
             }
           });
         }, index * 200);
-      })
-    }
+      });
+    },
   };
 
   return Masongram;
