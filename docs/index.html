@@ -50,7 +50,7 @@
           access_token: access_token,
           count: 5,
           size: 'standard_resolution',
-          caption: '<div class="text-center"><p data-if="{likes}"><i class="fa fa-heart text-danger"></i> {likes}</p><p data-if="{caption}">{caption}</p><a class="btn btn-primary" href="https://fruskac.net/en/map?c={location},12z" target="_blank" data-if="{location}"><i class="fa fa-map-o"></i> Location</a> <a class="btn btn-primary" href="{link}" target="_blank" data-if="{link}"><i class="fa fa-instagram"></i> Instagram</a></div>',
+          caption: '<div class="text-center"><p data-if="{likes}"><i class="fa fa-heart text-danger"></i> {likes}</p><p data-if="{caption}">{caption}</p><a tabindex="-1" class="btn btn-primary" href="https://fruskac.net/en/map?c={location},12z" target="_blank" data-if="{location}"><i class="fa fa-map-o"></i> Location</a> <a tabindex="-1" class="btn btn-primary" href="{link}" target="_blank" data-if="{link}"><i class="fa fa-instagram"></i> Instagram</a></div>',
         }).on('masongram:api:end', function () {
           console.info('No more API items');
         }).on('masongram:error', function () {

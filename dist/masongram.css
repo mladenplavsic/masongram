@@ -121,7 +121,7 @@ html {
   top: 2px;
   left: 2px;
   background: rgba(0, 0, 0, 0.5);
-  transition: all .3s;
+  transition: all .3s .1s;
   opacity: 0;
 }
 .masongram-container .masongram-image-container .masongram-image-caption-container .masongram-image-caption {
