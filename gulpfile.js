@@ -24,7 +24,7 @@ gulp.task('js', function () {
     .pipe(gulp.dest('dist'))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))
 });
 
@@ -39,7 +39,8 @@ gulp.task('less', function () {
 
 gulp.task('docs', ['js', 'less'], function () {
   return gulp.src([
-    './dist/*.min.*'
+    './dist/*.min.*',
+    './dist/*.min.*.map'
   ])
     .pipe(gulp.dest('docs'))
 });

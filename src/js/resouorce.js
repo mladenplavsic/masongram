@@ -1,6 +1,6 @@
 'use strict';
 
-var Resource = (function () {
+var Resource = (function (window, $, undefined) {
 
   var _config;
   var _url;
@@ -52,4 +52,4 @@ var Resource = (function () {
 
   return Resource;
 
-})();
+})(window, jQuery);

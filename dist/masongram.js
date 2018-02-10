@@ -8,7 +8,7 @@ window.masongram = $.fn.masongram = function(options) {
 
 "use strict";
 
-var Masongram = function() {
+var Masongram = function(window, $, undefined) {
     var _dependencies = [ "jQuery", "Masonry" ];
     var _error = false;
     var _config;
@@ -111,11 +111,11 @@ var Masongram = function() {
         }
     };
     return Masongram;
-}();
+}(window, jQuery);
 
 "use strict";
 
-var Resource = function() {
+var Resource = function(window, $, undefined) {
     var _config;
     var _url;
     function Resource(config) {
@@ -155,11 +155,11 @@ var Resource = function() {
         }
     };
     return Resource;
-}();
+}(window, jQuery);
 
 "use strict";
 
-var Tile = function() {
+var Tile = function(window, $, undefined) {
     var _$object, _data, _config, _NO_DATA = "NO_DATA";
     function Tile(data, config) {
         _data = data;
@@ -241,4 +241,4 @@ var Tile = function() {
         }
     };
     return Tile;
-}();
+}(window, jQuery);
