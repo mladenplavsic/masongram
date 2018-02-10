@@ -18,8 +18,8 @@ gulp.task('js', function () {
     .pipe(concat('masongram.min.js'))
     .pipe(replace(/["']use strict["'];/g, ''))
     .pipe(iife({
-      params: ['window', 'document', 'jQuery'],
-      args: ['window', 'document', '$']
+      params: ['window', 'document', '$'],
+      args: ['window', 'document', 'jQuery']
     }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
