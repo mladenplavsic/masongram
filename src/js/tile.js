@@ -19,8 +19,6 @@ var Tile = (function () {
 
     create: function () {
       _$object = $('<a>').attr({
-        href: _data.link,
-        target: '_blank',
         class: 'masongram-image-container masongram-image-size-' + _config.size,
       });
 
@@ -85,6 +83,9 @@ var Tile = (function () {
               break;
             case '{likes}':
               html = html.replace(match, _data.likes && _data.likes.count !== undefined ? _data.likes.count : _NO_DATA);
+              break;
+            case '{link}':
+              html = html.replace(match, _data.link ? _data.link : _NO_DATA);
               break;
           }
         });

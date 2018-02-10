@@ -170,8 +170,6 @@ var Tile = function() {
     Tile.prototype = {
         create: function() {
             _$object = $("<a>").attr({
-                href: _data.link,
-                target: "_blank",
                 class: "masongram-image-container masongram-image-size-" + _config.size
             });
             var $img = $("<img>").attr({
@@ -230,6 +228,10 @@ var Tile = function() {
 
                       case "{likes}":
                         html = html.replace(match, _data.likes && _data.likes.count !== undefined ? _data.likes.count : _NO_DATA);
+                        break;
+
+                      case "{link}":
+                        html = html.replace(match, _data.link ? _data.link : _NO_DATA);
                         break;
                     }
                 });

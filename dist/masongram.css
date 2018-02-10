@@ -126,9 +126,10 @@ html {
 }
 .masongram-container .masongram-image-container .masongram-image-caption-container .masongram-image-caption {
   width: 100%;
-  font-size: larger;
 }
-.masongram-container .masongram-image-container:hover .masongram-image-caption-container {
+.masongram-container .masongram-image-container:hover .masongram-image-caption-container,
+.masongram-container .masongram-image-container:focus .masongram-image-caption-container,
+.masongram-container .masongram-image-container:active .masongram-image-caption-container {
   opacity: .9;
 }
 .fancybox-title {
