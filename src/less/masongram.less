@@ -63,9 +63,9 @@ html {
       position: absolute;
       padding: @masongram-caption-padding @masongram-caption-padding*2;
       top: @masongram-image-padding;
-      left: @masongram-image-padding;
+      left: -100%;
       background: rgba(0, 0, 0, 0.5);
-      transition: all .3s .1s;
+      transition: left 0s .3s, opacity .3s .3s;
       opacity: 0;
 
       .masongram-image-caption {
@@ -78,6 +78,7 @@ html {
     &:focus,
     &:active {
       .masongram-image-caption-container {
+        left: @masongram-image-padding;
         opacity: .9;
       }
     }

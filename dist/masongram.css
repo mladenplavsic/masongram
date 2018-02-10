@@ -119,9 +119,9 @@ html {
   position: absolute;
   padding: 10px 20px;
   top: 2px;
-  left: 2px;
+  left: -100%;
   background: rgba(0, 0, 0, 0.5);
-  transition: all .3s .1s;
+  transition: left 0s .3s, opacity .3s .3s;
   opacity: 0;
 }
 .masongram-container .masongram-image-container .masongram-image-caption-container .masongram-image-caption {
@@ -130,6 +130,7 @@ html {
 .masongram-container .masongram-image-container:hover .masongram-image-caption-container,
 .masongram-container .masongram-image-container:focus .masongram-image-caption-container,
 .masongram-container .masongram-image-container:active .masongram-image-caption-container {
+  left: 2px;
   opacity: .9;
 }
 .fancybox-title {
