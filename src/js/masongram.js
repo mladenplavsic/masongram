@@ -83,7 +83,7 @@ var Masongram = (function () {
         if (!scrollTimeout) {
           scrollTimeout = setTimeout(function () {
             _$container.imagesLoaded().progress(function () {
-              if ($(window).scrollTop() + $(window).height() > $(document).height() * (1 - _config.offset / 100)) {
+              if ($(window).scrollTop() > $(document).height() - ($(window).height() * (1 + _config.offset / 100))) {
                 self.load();
               }
             });
