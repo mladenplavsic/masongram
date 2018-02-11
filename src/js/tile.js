@@ -18,7 +18,7 @@ var Tile = (function () {
   Tile.prototype = {
 
     create: function () {
-      _$object = $('<a>').attr({
+      _$object = $('<div>').attr({
         tabindex: 0,
         class: 'masongram-image-container masongram-image-size-' + _config.size,
       });
