@@ -53,7 +53,12 @@ var Tile = (function () {
     },
 
     parseLocation: function () {
-      if (_data.caption && _data.caption.text && /@[\d]+\.[\d]+,[\d]+\.[\d]+/.test(_data.caption.text)) {
+      // Strip location if explicitly not allowed
+      if (_config.location.indexOf('inherit') === -1) {
+        delete _data.location;
+      }
+      // get location from caption content, for example "@12.34,56.78"
+      if (_config.location.indexOf('caption') !== -1 && _data.caption && _data.caption.text && /@[\d]+\.[\d]+,[\d]+\.[\d]+/.test(_data.caption.text)) {
         var location = _data.caption.text.match(/@([\d]+\.[\d]+),([\d]+\.[\d]+)/);
         _data.caption.text = _data.caption.text.replace(/\s*@([\d]+\.[\d]+),([\d]+\.[\d]+)/, '');
         _data.location = {

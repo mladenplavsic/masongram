@@ -47,6 +47,7 @@ var Masongram = (function () {
         offset: 10,
         size: 'low_resolution',
         caption: '{caption}',
+        location: 'inherit&caption',
       }, options);
     },
 
@@ -116,6 +117,7 @@ var Masongram = (function () {
         var tile = new Tile(item, {
           caption: _config.caption,
           size: _config.size,
+          location: _config.location
         });
         var $object = tile.getObject();
         setTimeout(function () {
