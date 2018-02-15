@@ -1,6 +1,6 @@
 {
   "name": "masongram",
-  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
+  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload",
   "main": "dist/masongram.js",
   "directories": {
     "doc": "docs"

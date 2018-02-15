@@ -3,7 +3,7 @@
   "authors": [
     "Mladen Plavsic <mladen.plavsic@gmail.com>"
   ],
-  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload and FancyBox for large photos",
+  "description": "JavaScript library for showing photos from Instagram using API, layout using Masonry, with infiniteload",
   "main": [
     "dist/masongram.js",
     "dist/masongram.css"
@@ -11,7 +11,6 @@
   "keywords": [
     "instagram",
     "masonry",
-    "fancybox",
     "lightbox",
     "infinite",
     "scroll",
@@ -35,7 +34,6 @@
     "jquery": "^2.2.4",
     "masonry": "^4.1.1",
     "imagesloaded": "images-loaded#^4.1.1",
-    "jquery-infinite-scroll": "infinite-scroll#^2.1.0",
-    "fancybox": "^2.1.6"
+    "jquery-infinite-scroll": "infinite-scroll#^2.1.0"
   }
 }

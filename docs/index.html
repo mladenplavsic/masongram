@@ -27,16 +27,11 @@
     <meta name="og:type" content="article">
 
     <link rel="stylesheet" href="masongram.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="masongram.min.js"></script>
     <script>
@@ -50,13 +45,7 @@
           access_token: access_token,
           count: 5,
           size: 'standard_resolution',
-          caption: '<div class="text-center"><p data-if="{likes}"><i class="fa fa-heart text-danger"></i> {likes}</p><p data-if="{caption}">{caption}</p><a tabindex="-1" class="btn btn-primary" href="https://fruskac.net/en/map?c={location},12z" target="_blank" data-if="{location}"><i class="fa fa-map-o"></i> Location</a> <a tabindex="-1" class="btn btn-primary" href="{link}" target="_blank" data-if="{link}"><i class="fa fa-instagram"></i> Instagram</a></div>',
-        }).on('masongram:api:end', function () {
-          console.info('No more API items');
-        }).on('masongram:error', function () {
-          if (!access_token) {
-            $('#photos').after('<br><p class="text-center"><a class="btn btn-info btn-lg ' + authorization + '">Allow MasonGram to access your public photos</a></p>');
-          }
+          caption: '<div class="text-center"><p data-if="{likes}"><i class="fa fa-heart text-danger"></i> {likes}</p><p data-if="{caption}">{caption}</p><a tabindex="-1" class="btn btn-primary" href="https://fruskac.net/en/map?c={location},12z" target="_blank" data-if="{location}"><i class="fa fa-map-o"></i> Location</a> <a tabindex="-1" class="btn btn-primary" href="{link}" target="_blank" data-if="{link}"><i class="fa fa-instagram"></i> Instagram</a></div>'
         });
         $('.authorization').attr('href', authorization);
       });

@@ -87,25 +87,6 @@ html {
 
 }
 
-.fancybox-title {
-  font-weight: normal;
-
-  .child {
-    font-weight: normal;
-  }
-
-  > * {
-    padding: @masongram-image-padding;
-  }
-
-  a {
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    color: #fff;
-  }
-}
-
 .masongram-media-width(@min-width, @count) {
   @media (min-width: (@min-width+1)) {
     width: unit(floor(10000/@count)/100, %);

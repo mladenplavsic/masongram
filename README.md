@@ -7,8 +7,6 @@ jQuery plugin to add Instagram feed to a page.
 - Simple
 - Responsive
 - Infinite loading while scrolling down
-- FancyBox popup for viewing large image versions
-- Infinite load while in FancyBox popup (new images added dynamically)
 - Link to a location on map (configurable either via caption text `@12.34,56.78` or via image location tag)
 - Configurable image caption with "caption", "location", "likes"
 
@@ -39,5 +37,4 @@ jQuery plugin to add Instagram feed to a page.
 - jQuery
 - Masonry (jQuery plugin)
 - ImagesLoaded (jQuery plugin)
-- FancyBox (jQuery plugin)
 
