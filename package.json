@@ -5,8 +5,8 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
   "devDependencies": {
+    "bower": "^1.8.8",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",

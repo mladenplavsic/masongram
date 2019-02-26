@@ -93,6 +93,9 @@ var Tile = (function () {
             case '{link}':
               html = html.replace(match, _data.link ? _data.link : _NO_DATA);
               break;
+            case '{image}':
+              html = html.replace(match, _data.images['standard_resolution'].url ? _data.images['standard_resolution'].url : _NO_DATA);
+              break;
           }
         });
       }

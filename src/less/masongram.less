@@ -1,8 +1,8 @@
+@masongram-image-padding: 2px;
+
 html {
   overflow-y: scroll;
 }
-
-@masongram-image-padding: 2px;
 
 .masongram-container {
   margin: @masongram-image-padding;
@@ -13,7 +13,6 @@ html {
     clear: both;
   }
 
-
   * {
     box-sizing: border-box;
   }
@@ -21,6 +20,7 @@ html {
   .masongram-image-sizer,
   .masongram-image-container {
     width: 100%;
+
     &.masongram-image-size-low_resolution {
       .masongram-media-width (320px, 2);
       .masongram-media-width (640px, 3);
@@ -32,6 +32,7 @@ html {
       .masongram-media-width (2560px, 9);
       .masongram-media-width (2880px, 10);
     }
+
     &.masongram-image-size-standard_resolution {
       .masongram-media-width (640px, 2);
       .masongram-media-width (1280px, 3);
@@ -71,7 +72,6 @@ html {
       .masongram-image-caption {
         width: 100%;
       }
-
     }
 
     &:hover,
@@ -82,9 +82,7 @@ html {
         opacity: .9;
       }
     }
-
   }
-
 }
 
 .masongram-media-width(@min-width, @count) {
