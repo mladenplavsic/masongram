@@ -48,7 +48,7 @@
 
     <script>
         var access_token = window.location.hash.replace(/#access_token=([\w\d.]+)/, '$1');
-        var authorization = 'https://api.instagram.com/oauth/authorize/?client_id=99bd7840c3ce40a3b30cceace365891f&redirect_uri=' + window.location + '&response_type=token&scope=public_content';
+        var authorization = 'https://api.instagram.com/oauth/authorize/?client_id=99bd7840c3ce40a3b30cceace365891f&redirect_uri=' + window.location + '&response_type=token&scope=basic';
         if (!access_token) {
             access_token = '2127248609.1677ed0.db0b4ad502bf43d3b915db9fadcfece0';
         }
@@ -68,6 +68,11 @@
                     '</div>'
             });
             $('.authorization').attr('href', authorization);
+            if (/#access_token=([\w\d.]+)/.test(window.location.hash)) {
+                $('.display.user').removeClass('hidden');
+            } else {
+                $('.display.default').removeClass('hidden');
+            }
         });
     </script>
     <script>
@@ -85,15 +90,33 @@
         ga('create', 'UA-52141130-1', 'auto');
         ga('send', 'pageview');
     </script>
+    <style>
+        .head {
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
-
-<div class="jumbotron text-center" style="margin-bottom:0">
+<div class="head">
+    <a class="pull-right" href="https://github.com/mladenplavsic/masongram">
+        <i class="fa fa-github"></i>
+        View on GitHub
+    </a>
     <h1>
         MasonGram
-        <a class="btn btn-primary" href="https://github.com/mladenplavsic/masongram" role="button">Learn
-            more</a>
+        <small>
+            Instagram photo feed jQuery plugin
+        </small>
     </h1>
+    <p>
+        Displaying photos from
+        <a class="display default hidden" href="https://fruskac.net/en/" target="_blank">@fruskac</a>
+        <strong class="display user hidden">Your</strong>
+        Instagram account
+        -
+        <a class="authorization display default hidden">click here to show your photos</a>
+        <a href class="display user hidden">show <strong>@fruskac</strong> photos</a>
+    </p>
     <p>
         <a class="github-button" href="https://github.com/mladenplavsic/masongram"
            data-icon="octicon-star" data-size="large"
@@ -104,9 +127,6 @@
         <a class="github-button" href="https://github.com/mladenplavsic" data-size="large"
            aria-label="Follow @mladenplavsic on GitHub">Follow @mladenplavsic</a>
     </p>
-    <p class="lead">jQuery plugin for displaying Instagram photo feed</p>
-    <p>Displaying photos from <a href="https://fruskac.net/en/" target="_blank">@fruskac</a> - <a
-            class="authorization">Use your Instagram account</a></p>
 </div>
 
 <!-- dedicated container or MasonGram -->

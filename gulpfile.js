@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var iife = require('gulp-iife');
 var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
+var gls = require('gulp-live-server');
 
 gulp.task('default', [
   'docs'
@@ -44,4 +45,9 @@ gulp.task('docs', ['js', 'less'], function () {
 
 gulp.task('watch', ['docs'], function () {
   gulp.watch('src/**/*.*', ['docs']);
+});
+
+gulp.task('serve', function() {
+  var server = gls.static(['.']);
+  server.start();
 });
